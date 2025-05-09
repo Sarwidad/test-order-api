@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     // Array untuk menyimpan order sementara di memori
-    private $orders = []; // Ganti menjadi non-statis
-    private $nextId = 1;  // Ganti menjadi non-statis
+    private $orders = []; 
+    private $nextId = 1;  
 
     // Fungsi untuk menerima dan menyimpan order
     public function store(Request $request)
@@ -22,20 +22,20 @@ class OrderController extends Controller
 
         // Menyimpan order baru
         $order = [
-            'order_id'      => $this->nextId++, // Gunakan $this->nextId
+            'order_id'      => $this->nextId++,
             'customer_name' => $validated['customer_name'],
             'menu_item'     => $validated['menu_item'],
             'quantity'      => $validated['quantity'],
         ];
 
         // Menyimpan order dalam array
-        $this->orders[] = $order; // Gunakan $this->orders
+        $this->orders[] = $order;
 
         // Mengembalikan response sukses dengan ID order
         return response()->json([
             'message'   => 'Order received successfully',
             'order_id'  => $order['order_id'],
-        ], 201);  // Status HTTP 201 untuk Created
+        ], 201); 
     }
 
     // Fungsi untuk menampilkan semua order atau filter berdasarkan customer_name
@@ -43,7 +43,7 @@ class OrderController extends Controller
     {
         $customerName = $request->query('customer_name');
 
-        $filteredOrders = $this->orders; // Gunakan $this->orders
+        $filteredOrders = $this->orders; 
 
         if ($customerName) {
             // Filter berdasarkan nama customer (case-insensitive)
